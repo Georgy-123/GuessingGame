@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Georgy Bogachev">
+    <title>Guessing Game</title>
+</head>
+<body>
+
+    <p id="demo"></p>
+
+    <script>
+        let keepPlaying = true;
+
+        while (keepPlaying) {
+            const randomNumber = Math.floor(Math.random() * 10) + 1;
+            document.getElementById("demo").innerHTML = randomNumber;
+            console.log(randomNumber);
+
+            let tryCounter = 1;
+            let userInput = prompt("Guess a Number between 1 and 10");
+
+            while (true) {
+                if (userInput === null) {
+                    keepPlaying = false;
+                    break;
+                }
+
+                const userGuess = Number(userInput);
+
+                if (userGuess === randomNumber) {
+                    const resultPrompt = prompt("You guessed it in " + tryCounter + " guesses!");
+                    if (resultPrompt === null) {
+                        keepPlaying = false;
+                    }
+                    break;
+                }
+
+                tryCounter++;
+
+                if (userGuess > randomNumber) {
+                    userInput = prompt("Your guess was too high, guess again.");
+                } else {
+                    userInput = prompt("Your guess was too low, guess again.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
